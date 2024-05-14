@@ -1,10 +1,10 @@
 import argparse
 import subprocess
+import signal
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from tqdm import tqdm
-import signal
-import sys
 
 def sigint_handler(sig, frame):
     # Handle KeyboardInterrupt (Ctrl+C)
