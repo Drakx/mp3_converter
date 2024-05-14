@@ -2,7 +2,7 @@
 
 A simple project that will convert MP3 into OGG and FLAC
 
-usage: `python3 converter -r /path/to/mp3/files`
+usage: ~python3 converter -r /path/to/mp3/files~
 
 Example output after script has finished
 #+begin_example
