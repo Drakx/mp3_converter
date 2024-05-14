@@ -1,8 +1,9 @@
 import unittest
+import shutil
 from pathlib import Path
 import subprocess
 from unittest.mock import patch
-from mp3_converter import convert_to_ogg_flac
+from converter import convert_to_ogg_flac
 
 class TestMP3Converter(unittest.TestCase):
     def setUp(self):
@@ -21,10 +22,21 @@ class TestMP3Converter(unittest.TestCase):
         self.mock_run = patch("subprocess.run").start()
 
     def tearDown(self):
-        # Remove temporary directories
+        # Remove files and subdirectories within the temporary directory recursively
+        for item in self.test_dir.glob('**/*'):
+            if item.is_file():
+                item.unlink()
+            else:
+                shutil.rmtree(item, ignore_errors=True)
+
+        # Remove mp3, ogg, and flac directories within the temporary directory
+        mp3_dir = self.test_dir / 'mp3'
+        for subdir in ['ogg', 'mp3', 'flac']:
+            if (mp3_dir / subdir).exists():
+                (mp3_dir / subdir).rmdir()
+
+        # Remove the temporary directory itself
         self.test_dir.rmdir()
-        # Stop mocking subprocess.run
-        patch.stopall()
 
     def test_convert_to_ogg_flac(self):
         # Create a test MP3 file
