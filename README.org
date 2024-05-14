@@ -16,6 +16,7 @@ Optional Input Flags:
 -i ogg: Converts OGG files to FLAC and MP3.
 
 Optional Output Flags:
+
 -o flac: Out put files to be converted to FLAC.
 
 -o ogg: Out put files to be converted to OGG.
