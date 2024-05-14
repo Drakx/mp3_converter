@@ -9,7 +9,7 @@ Usage:
 python3 converter.py -r /path/to/mp3/files
 #+end_src
 
-Optional Input Flags:
+** Optional Input Flags:
 
 -i flac: Convert FLAC files to OGG and MP3.
 
@@ -21,7 +21,7 @@ Optional Output Flags:
 
 -o ogg: Out put files to be converted to OGG.
 
-Examples:
+** Examples:
 
 Convert MP3 files to OGG and FLAC:
 #+begin_src shell
