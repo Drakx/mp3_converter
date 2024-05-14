@@ -61,3 +61,8 @@ Music/
 ** Purpose:
 This tool was developed to facilitate the conversion of music files into multiple formats for compatibility with various devices.
 It offers flexibility in choosing the desired output formats for music collection backup.
+
+# MP3 Converter
+This project is licensed under the GNU General Public License v3.0. See the [[LICENSE][LICENSE]] file for details.
+
+Copyright © 2024 Kai Windle
