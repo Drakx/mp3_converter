@@ -1,23 +1,60 @@
 * MP3 Converter
 
-A simple project that will convert MP3 into OGG and FLAC
+** Description:
+This project provides a simple command-line tool to convert MP3 files into OGG and FLAC formats.
+By default, the script expects to find MP3 files and will produce OGG and FLAC files as output.
 
-usage: ~python3 converter -r /path/to/mp3/files~
+Usage:
+#+begin_src shell
+python3 converter.py -r /path/to/mp3/files
+#+end_src
 
-Example output after script has finished
+Optional Input Flags:
+
+-i flac: Convert FLAC files to OGG and MP3.
+-i ogg: Converts OGG files to FLAC and MP3.
+
+Optional Output Flags:
+-o flac: Out put files to be converted to FLAC.
+-o ogg: Out put files to be converted to OGG.
+
+Examples:
+
+Convert MP3 files to OGG and FLAC:
+#+begin_src shell
+python3 converter.py -r /path/to/music/to/convert
+#+end_src
+
+Convert MP3 files to FLAC:
+#+begin_src shell
+python3 converter.py -r /path/to/music/to/convert -o flac
+#+end_src
+
+Convert MP3 files to OGG:
+#+begin_src shell
+python3 converter.py -r /path/to/music/to/convert -o ogg
+#+end_src
+
+Output:
+The converted files will be organized into directories based on their formats, such as MP3, OGG, and FLAC.
+
+Example Output:
+
 #+begin_example
 Music/
 ├── MP3
-│   ├── Clubland
-│   │   ├── 23
-│   │   │   ├── CD 1
-│   │   │   │   ├── flac
-│   │   │   │   │   ├── 1. Antenna - Fuse ODG.flac
-│   │   │   │   ├── mp3
-│   │   │   │   │   ├── 1. Antenna - Fuse ODG.mp3
-│   │   │   │   └── ogg
-│   │   │   │       ├── 1. Antenna - Fuse ODG.ogg
+│   ├── Clubland
+│   │   ├── 23
+│   │   │   ├── CD 1
+│   │   │   │   ├── flac
+│   │   │   │   │   ├── 1. Antenna - Fuse ODG.flac
+│   │   │   │   ├── mp3
+│   │   │   │   │   ├── 1. Antenna - Fuse ODG.mp3
+│   │   │   │   └── ogg
+│   │   │   │       ├── 1. Antenna - Fuse ODG.ogg
 #+end_example
 
-** Why?
-I was legally backing up music I owned and wanted the formats for different devices, since I couldn't decide I opted for all three formats
+
+** Purpose:
+This tool was developed to facilitate the conversion of music files into multiple formats for compatibility with various devices.
+It offers flexibility in choosing the desired output formats for music collection backup.
