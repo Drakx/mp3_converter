@@ -1,0 +1,21 @@
+* MP3 Converter
+
+A simple project that will convert MP3 into OGG and FLAC
+
+Example output after script has finished
+#+begin_example
+Music/
+├── MP3
+│   ├── Clubland
+│   │   ├── 23
+│   │   │   ├── CD 1
+│   │   │   │   ├── flac
+│   │   │   │   │   ├── 1. Antenna - Fuse ODG.flac
+│   │   │   │   ├── mp3
+│   │   │   │   │   ├── 1. Antenna - Fuse ODG.mp3
+│   │   │   │   └── ogg
+│   │   │   │       ├── 1. Antenna - Fuse ODG.ogg
+#+end_example
+
+** Why?
+I was legally backing up music I owned and wanted the formats for different devices, since I couldn't decide I opted for all three formats
