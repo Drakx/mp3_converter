@@ -12,10 +12,12 @@ python3 converter.py -r /path/to/mp3/files
 Optional Input Flags:
 
 -i flac: Convert FLAC files to OGG and MP3.
+
 -i ogg: Converts OGG files to FLAC and MP3.
 
 Optional Output Flags:
 -o flac: Out put files to be converted to FLAC.
+
 -o ogg: Out put files to be converted to OGG.
 
 Examples:
