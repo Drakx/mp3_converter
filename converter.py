@@ -2,6 +2,7 @@ import argparse
 import subprocess
 import signal
 import sys
+import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from tqdm import tqdm
@@ -36,10 +37,32 @@ def convert_file(input_file, output_format):
     try:
         # Convert the file to the specified output format
         subprocess.run(["ffmpeg", "-i", str(input_file), str(output_file)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        return None  # Return None for successful conversion
+        return input_file, output_file  # Return both input and output files for further processing
     except subprocess.CalledProcessError as e:
         print(f"Error converting {input_file}: {e}")
         return input_file  # Return input_file for failed conversion
+
+def move_file(input_file, input_format):
+    """
+    Move the input file to the directory corresponding to the input format.
+
+    Parameters:
+        input_file (Path): Path to the input file.
+        input_format (str): Input format to convert from.
+    """
+    # Define the destination directory based on the input format
+    dest_dir = input_file.parent / input_format
+    dest_dir.mkdir(exist_ok=True)
+
+    # Define the destination file path
+    dest_file = dest_dir / input_file.name
+
+    # If the destination file already exists, skip the move operation
+    if dest_file.exists():
+        return
+
+    # Move the file to the destination directory
+    shutil.move(str(input_file), str(dest_file))
 
 
 def main(root_dir, input_format, output_formats):
@@ -72,6 +95,9 @@ def main(root_dir, input_format, output_formats):
             for future in as_completed(futures):
                 if future.exception() is not None:
                     failed_files.append(future.exception())
+                else:
+                    input_file, _ = future.result()  # Get the input file path
+                    move_file(input_file, input_format)  # Move the file to its respective folder
                 pbar.update(1)
 
     # Print list of failed conversions, if any
@@ -79,7 +105,6 @@ def main(root_dir, input_format, output_formats):
         print("\nFailed to convert the following files:")
         for failed_file in failed_files:
             print(f"- {failed_file}")
-
 
 if __name__ == "__main__":
     # Parse command-line arguments
