@@ -41,7 +41,9 @@ def convert_file(input_file, output_format, pbar):
 
     try:
         # Convert the file to the specified output format
-        subprocess.run(["ffmpeg", "-i", str(input_file), str(output_file)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(["ffmpeg", "-i", str(input_file), str(output_file)], 
+                       check=True, stdout=subprocess.DEVNULL, 
+                       stderr=subprocess.DEVNULL)
         pbar.update(1)
         return input_file, output_file  # Return both input and output files for further processing
     except subprocess.CalledProcessError as e:
@@ -73,7 +75,8 @@ def move_file(input_file, input_format):
 
 def main(root_dir, input_format, output_formats):
     """
-    Main function to convert files in the specified directory from input_format to output_formats.
+    Main function to convert files in the specified directory from input_format 
+    to output_formats.
 
     Parameters:
         root_dir (str): Root directory containing files to convert.
